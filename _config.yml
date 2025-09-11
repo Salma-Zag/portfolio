@@ -1,9 +1,9 @@
-title: Open Coding 
+title: Code Constellations 
 description: "Class of 2029"
 owner_name: Adya Shipekar
 github_username: AdyaShipekar
-github_repo: "student" 
-baseurl: "/student" 
+github_repo: "code" 
+baseurl: "/code" 
 future: true
 remote_theme: jekyll/minima
 minima:

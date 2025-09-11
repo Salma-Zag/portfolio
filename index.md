@@ -22,8 +22,8 @@ background: images/platformer/backgrounds/galaxy1.jpg
     text-align: center;
     text-shadow:
     0 2px 4px rgba(0, 0, 0, 0.8),   /* dark drop shadow */
-    0 0 8px #00ffea,                 /* neon glow */
-    0 0 15px #0099ff;                /* outer glow */
+    0 0 8px #000000ff,                 /* neon glow */
+    0 0 15px #000067ff;                /* outer glow */
   }
 
   /* Typing text container */
@@ -51,7 +51,7 @@ background: images/platformer/backgrounds/galaxy1.jpg
 </div>
 
 <script>
-  const text = "🚀 Welcome Rookie Coder... Initializing Galactic Onboarding Protocol...";
+  const text = "🚀 Welcome Rookie Coder...";
   const speed = 70; // ms per character
   let i = 0;
 
@@ -65,26 +65,6 @@ background: images/platformer/backgrounds/galaxy1.jpg
 
   window.onload = typeWriter;
 </script>
-
-<h2 class="typing">Troubleshooting at Lightspeed</h2>
-
-<style>
-  .typing {
-    font-family: 'Orbitron', 'Share Tech Mono', monospace !important; /* same as main text */
-    color: #00ffff;
-    font-size: 1.5rem;
-    text-align: center;
-    margin: 0 auto;
-    opacity: 0; /* start invisible */
-    animation: fadeIn 2s ease-in forwards;
-    animation-delay: 6s; /* wait for typewriter to finish */
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-</style>
 
 <div class="middle-text">Coding Constellations</div>
 
@@ -102,12 +82,12 @@ background: images/platformer/backgrounds/galaxy1.jpg
     color: #ffffffff; /*text color*/
     text-shadow:
       2px 2px 8px rgba(0, 0, 0, 0.8), /* subtle dark shadow */
-      0 0 15px #00ffff,                /* glow */
-      0 0 30px #0099ff;                /* outer glow */
+      0 0 15px #000000ff,                /* glow */
+      0 0 30px #000000ff;                /* outer glow */
     text-align: center;
     opacity: 0;
     animation: fadeInMiddle 1s ease-in forwards;
-    animation-delay: 8s; /* appears after 8 seconds, adjust as needed */
+    animation-delay: 2s; /* appears after 8 seconds, adjust as needed */
   }
 
   @keyframes fadeInMiddle {
@@ -115,5 +95,25 @@ background: images/platformer/backgrounds/galaxy1.jpg
     to   { opacity: 1; transform: translate(-50%, -50%); }
   }
 </style>
-
-<a href=">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<a href="{{site.baseurl}}/home" class="button large" style="background-color: #000000ff">
+    <span style="color: #ffffffff">Proceed to Homepage</span>

@@ -1,6 +1,6 @@
 # Configuration, override port with usage: make PORT=4610
-PORT ?= 4600
-REPO_NAME ?= student
+PORT ?= 4800
+REPO_NAME ?= code
 LOG_FILE = /tmp/jekyll$(PORT).log
 
 SHELL = /bin/bash -c
@@ -27,7 +27,7 @@ default: server
 	@# tail and awk work together to extract Jekyll regeneration messages
 	@# When a _notebook is detected in the log, call make convert in the background
 	@# Note: We use the "if ($$0 ~ /_notebooks\/.*\.ipynb/) { system(\"make convert &\") }" to call make convert
-	@(tail -f $(LOG_FILE) | awk '/Server address: http:\/\/127.0.0.1:$(PORT)\/$(REPO_NAME)\// { serverReady=1 } \
+	@(tail -f $(LOG_FILE) | awk '/Server address: http:\/\/127.0.0.1:$(PORT)\// { serverReady=1 } \
 	serverReady && /^ *Regenerating:/ { regenerate=1 } \
 	regenerate { \
 		if (/^[[:blank:]]*$$/) { regenerate=0 } \
@@ -59,7 +59,7 @@ csp: cspserver
 	@# tail and awk work together to extract Jekyll regeneration messages
 	@# When a _notebook is detected in the log, call make convert in the background
 	@# Note: We use the "if ($$0 ~ /_notebooks\/.*\.ipynb/) { system(\"make convert &\") }" to call make convert
-	@(tail -f $(LOG_FILE) | awk '/Server address: http:\/\/127.0.0.1:$(PORT)\/$(REPO_NAME)\// { serverReady=1 } \
+	@(tail -f $(LOG_FILE) | awk '/Server address: http:\/\/127.0.0.1:$(PORT)\// { serverReady=1 } \
 	serverReady && /^ *Regenerating:/ { regenerate=1 } \
 	regenerate { \
 		if (/^[[:blank:]]*$$/) { regenerate=0 } \
