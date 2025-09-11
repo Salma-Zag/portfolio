@@ -8,28 +8,30 @@ background: images/platformer/backgrounds/galaxy2.jpg
 
 <canvas id="world"></canvas> <!-- Creates a canvas element with id "world" to draw the game on. -->
 
+
 <script>
+  // Pass the background image path from Jekyll to JS
+  const backgroundImgPath = "{{ page.background }}";
   const canvas = document.getElementById("world");
   const ctx = canvas.getContext('2d');
-  const backgroundImg = new Image(); // Create a new Image Gameobject for the background using the image source.
-  backgroundImg.src = '{{page.background}}';
+  const backgroundImg = new Image();
+  backgroundImg.src = backgroundImgPath;
 
   let imagesLoaded = 0;
   backgroundImg.onload = function() {
     imagesLoaded++;
     startGameWorld();
+  };
 
   function startGameWorld() {
-    if (imagesLoaded < 1) return; // The GameWorld only starts once background image has loaded.
+    if (imagesLoaded < 1) return;
 
-    
     class Background extends GameObject {
       constructor(image, gameWorld) {
-        // Fill entire canvas
         super(image, gameWorld.width, gameWorld.height, 0, 0, 0.1);
       }
       update() {
-        this.x = (this.x - this.speed) % this.width; // Scrolls background left and loops it seamlessly.
+        this.x = (this.x - this.speed) % this.width;
       }
       draw(ctx) {
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -72,8 +74,7 @@ background: images/platformer/backgrounds/galaxy2.jpg
     const world = new GameWorld(backgroundImg);
     world.start();
   }
-
-<script>
+</script>
 
 Troubleshooting at Lightspeed
 
