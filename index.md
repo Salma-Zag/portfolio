@@ -1,69 +1,119 @@
 ---
 layout: base
-title: I'm Adya Shipekar
+title: Code Constellations
 hide: true
+background: images/platformer/backgrounds/galaxy1.jpg
 ---
+<style>
+  /* load Google Font via @import (works even if <link> is stripped) */
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-### Me and Team
+  /* Fullscreen galaxy background */
+  body {
+    margin: 0;
+    height: 100vh;
+    background: url('{{ site.baseurl }}/images/platformer/backgrounds/galaxy1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffffff;
+    font-family: 'Orbitron', 'Share Tech Mono', monospace !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.8),   /* dark drop shadow */
+    0 0 8px #00ffea,                 /* neon glow */
+    0 0 15px #0099ff;                /* outer glow */
+  }
 
-Hi! My name is Adya Shipekar. 😄
+  /* Typing text container */
+  #typed {
+    font-size: 2rem;
+    display: inline-block;
+  }
 
-| Role         | Name     | Repo Location                            | Stream                | Repo Name |
-|--------------|----------|------------------------------------------|-----------------------|-----------|
-| Scrum Master | John     | github.com/jm1021/student                | upstream (OCS fork)   | student   |
-| Scrummer     | Adya     | github.com/AdyaShipekar/student          | downstream (fork)     | student   |
-| Scrummer     | Salma    | github.com/Salma-Zag/student             | downstream (fork)     | student   |
-| Scrummer     | Niharika | github.com/Niharika-Boyanapalli/student  | downstream (fork)     | student   |
+  /* Blinking cursor */
+  #cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: #ffffffff;
+    margin-left: 5px;
+    animation: blink 0.7s steps(1) infinite;
+  }
 
-<br>
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+</style>
 
-## Links to Learning
+<div>
+  <span id="typed"></span><span id="cursor"></span>
+</div>
 
-### Development Environment
+<script>
+  const text = "🚀 Welcome Rookie Coder... Initializing Galactic Onboarding Protocol...";
+  const speed = 70; // ms per character
+  let i = 0;
 
-> Coding starts with tools, explore these tools and procedures with a click.
+  function typeWriter() {
+    if (i < text.length) {
+      document.getElementById("typed").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
+    }
+  }
 
-<a href="https://github.com/Open-Coding-Society/student">
-    <img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white" alt="GitHub">
-</a>
-<a href="https://open-coding-society.github.io/student">
-    <img src="https://img.shields.io/badge/GitHub%20Pages-327FC7?logo=github&logoColor=white" alt="GitHub Pages">
-</a>
-<a href="https://kasm.opencodingsociety.com/" class="button small" style="background-color: #6b4bd3ff">
-    KASM
-</a>
-<a href="https://vscode.dev/" class="button small" style="background-color: #d38a4bff">
-    <span style="color: #FFFFFF">VSCODE</span>
-</a>
+  window.onload = typeWriter;
+</script>
 
-<br>
-### Tools and Equipment
+<h2 class="typing">Troubleshooting at Lightspeed</h2>
 
-<a href="{{site.baseurl}}/github/pages/jokes" class="button small" style="background-color: #a41cc3ff">
-    Jupyter Notebooks
+<style>
+  .typing {
+    font-family: 'Orbitron', 'Share Tech Mono', monospace !important; /* same as main text */
+    color: #00ffff;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0 auto;
+    opacity: 0; /* start invisible */
+    animation: fadeIn 2s ease-in forwards;
+    animation-delay: 6s; /* wait for typewriter to finish */
+  }
 
-<a href="{{site.baseurl}}/tools/trouble" class="button small" style="background-color: #a41cc3ff">
-    Troubleshooting Guide
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
 
+<div class="middle-text">Coding Constellations</div>
 
-<br>
+<style>
+  /* Load a cursive Google Font */
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
-### Class Progress
+  .middle-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* center perfectly */
+    font-family: 'Great Vibes', cursive; /* cursive font */
+    font-size: 6rem; /* big size */
+    color: #ffffffff; /*text color*/
+    text-shadow:
+      2px 2px 8px rgba(0, 0, 0, 0.8), /* subtle dark shadow */
+      0 0 15px #00ffff,                /* glow */
+      0 0 30px #0099ff;                /* outer glow */
+    text-align: center;
+    opacity: 0;
+    animation: fadeInMiddle 1s ease-in forwards;
+    animation-delay: 8s; /* appears after 8 seconds, adjust as needed */
+  }
 
-<a href="{{site.baseurl}}/snake" class="button small" style="background-color: #431cc3ff">
-    Snake Game
-</a>
-<a href="{{site.baseurl}}/turtle" class="button small" style="background-color: #04550dff">
-    <span style="color: #ffffffff">Turtle</span>
-</a>
+  @keyframes fadeInMiddle {
+    from { opacity: 0; transform: translate(-50%, -60%); }
+    to   { opacity: 1; transform: translate(-50%, -50%); }
+  }
+</style>
 
-<br>
-
-<!-- Contact Section -->
-## Get in Touch
-
-> Feel free to reach out if you'd like to collaborate or learn more about our work.
-
-<p style="color: #2A7DB1;">Open Coding Society: <a href="https://opencodingsociety.com" style="color: #2A7DB1; text-decoration: underline;">Socials</a></p>
-<p>Discord: @redridinghood</p>
-<p>Email: adyas45785@stu.powayusd.com</p>
+<a href=">
