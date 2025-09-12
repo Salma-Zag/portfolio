@@ -66,7 +66,7 @@ background: images/platformer/backgrounds/galaxy1.jpg
   window.onload = typeWriter;
 </script>
 
-<div class="middle-text">Coding Constellations</div>
+<div class="middle-text">Code Constellations</div>
 
 <style>
   /* Load a cursive Google Font */
@@ -78,7 +78,7 @@ background: images/platformer/backgrounds/galaxy1.jpg
     left: 50%;
     transform: translate(-50%, -50%); /* center perfectly */
     font-family: 'Great Vibes', cursive; /* cursive font */
-    font-size: 6rem; /* big size */
+    font-size: 7rem; /* big size */
     color: #ffffffff; /*text color*/
     text-shadow:
       2px 2px 8px rgba(0, 0, 0, 0.8), /* subtle dark shadow */
