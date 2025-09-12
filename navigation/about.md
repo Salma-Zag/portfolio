@@ -6,6 +6,7 @@ comments: true
 ---
 
 ## About Our Crew
+We're just a set of six confused gooby goobers that want to make a difference in the world. Our goal is to help first-time coders fix their initial issues, so they don't cry and panic.
 
 <comment>
 Transmission incoming… 👽
