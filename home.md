@@ -10,6 +10,11 @@ background: images/platformer/backgrounds/galaxy2.jpg
 
 <canvas id="world"></canvas> <!-- Creates a canvas element with id "world" to draw the game on. -->
 
+<!-- Rocketship image -->
+<img src="{{site.baseurl}}/images/platformer/sprites/rocketship.png" id="rocket">
+
+<!-- Top typewriter text -->
+<div id="countdown"></div>
 
 <script>
   const canvas = document.getElementById("world");
@@ -102,6 +107,20 @@ background: images/platformer/backgrounds/galaxy2.jpg
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
+/* Countdown typewriter text */
+  #countdown {
+    position: absolute;
+    top: 10vh;;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 48px;
+    text-align: center;
+    z-index: 30; /* above everything */
+    white-space: nowrap;
+  }
+
   #overlay {
     position: absolute;
     top: 50%;           /* move slightly down from the center */
@@ -132,5 +151,39 @@ background: images/platformer/backgrounds/galaxy2.jpg
     color: black;
     box-shadow: 0 0 15px #b742dbff;
   }
+
+   /* Rocketship */
+  #rocket {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 120px;
+    height: auto;
+    z-index: 20;           /* above everything else */
+    animation: launch 3s ease-out forwards;
+    animation-delay: 5s;    /* wait 5 seconds before launch */
+  }
+
+  @keyframes launch {
+    0%   { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-120vh); opacity: 0; }
+  }
 </style>
+
+<script>
+  const countdownText = "💫Takeoff in 5...4...3...2...1...💫";
+  const countdownEl = document.getElementById("countdown");
+  let i = 0;
+
+  function typeWriter() {
+    if (i < countdownText.length) {
+      countdownEl.innerHTML += countdownText.charAt(i);
+      i++;
+      setTimeout(typeWriter, 130); // adjust speed (ms per character)
+    }
+  }
+
+  // Start typewriter effect immediately
+  typeWriter();
+</script>
 
