@@ -616,6 +616,30 @@ permalink: /breakout
       for (let powerUp of this.powerUps) {
         powerUp.draw(this.ctx);
       }
+
+      // Power-up timer bar
+if (this.activePowerUp) {
+  const elapsed = Date.now() - this.powerUpTimer;
+  const remaining = Math.max(0, this.powerUpDuration - elapsed);
+  const barHeight = 100;
+  const barWidth = 10;
+  const fillHeight = (remaining / this.powerUpDuration) * barHeight;
+
+  this.ctx.fillStyle = "gray";
+  this.ctx.fillRect(this.width - 20, 30, barWidth, barHeight);
+
+  this.ctx.fillStyle = "lime";
+  this.ctx.fillRect(
+    this.width - 20,
+    30 + (barHeight - fillHeight),
+    barWidth,
+    fillHeight
+  );
+
+  this.ctx.strokeStyle = "black";
+  this.ctx.strokeRect(this.width - 20, 30, barWidth, barHeight);
+}
+
     }
 
     updateInfoUI() {
