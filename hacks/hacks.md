@@ -4,7 +4,7 @@ tailwind: true
 title: Onboarding Adventure
 description: >
   A guided sequence of hands-on and learning tasks to help you master the frameworks that power our course.
-author: The ___ers
+author: The Creators
 type: hacks
 permalink: /hacks
 ---
