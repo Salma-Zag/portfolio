@@ -64,8 +64,8 @@ permalink: /background
     class Player extends GameObject {
       constructor(image, gameWorld) {
         /// to change GameObject size
-        const width = image.naturalWidth / 1.5;
-        const height = image.naturalHeight / 1.5;
+        const width = image.naturalWidth / 2;
+        const height = image.naturalHeight / 2;
         const x = (gameWorld.width - width) / 2; // Center the UFO horizontally.
         const y = (gameWorld.height - height) / 2; // Center the UFO vertically.
         super(image, width, height, x, y);
