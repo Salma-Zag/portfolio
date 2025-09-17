@@ -8,11 +8,11 @@ permalink: /background-lesson
 
 ---
 
-## **BACKGROUND LESSON**
+## **BACKGROUND LESSON** 🛸
 
 ---
 
-### Setup
+## **Setup**
 
 You should be able to access a forked copy of the pages repository under Open Coding Society. This is where you will be able to access the game and make local edits. If you would like to commit your changes, copy the file to a personal repository before continuing.
 
@@ -38,7 +38,7 @@ Brainstorm some ideas of changes you can make. Here are some "How might we..." q
 
 ---
 
-## Changes
+## **Changes**
 
 For this lesson, here are the changes we will be demoing:
 - Changing the background and/or the sprite image
@@ -47,7 +47,7 @@ For this lesson, here are the changes we will be demoing:
 
 <br>
 
-### Code Header (Changing the background/sprite):
+### **Code Header (Changing the background/sprite):**
 
 ```yaml
 ---
@@ -68,7 +68,7 @@ Make sure your images exist in their specified locations.
 
 <br>
 
-### GameObject (Changing size/speed):
+### **GameObject (Changing size/speed):**
 
 ```js
 class Player extends GameObject {
@@ -102,7 +102,7 @@ Challenge: How might we make the UFO oscillate left/right?
 
 <br>
 
-### Movement:
+### **Movement:**
 
 ```js
   update() {
