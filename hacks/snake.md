@@ -279,7 +279,7 @@ permalink: /snake
 
     let activeDot = function(x,y){ ctx.fillStyle="#00BFFF"; ctx.fillRect(x*BLOCK,y*BLOCK,BLOCK,BLOCK); }
 
-    // Multiple apples
+    // Multiple apples are generated
     let generateApples = function(){
     apples = [];
     for(let i=0;i<appleCount;i++){
