@@ -137,6 +137,12 @@ permalink: /snake
     let score, wall, lives;
     let obstacles = [];
 
+    // PORTALS
+    let portalPairs = [
+        {a: {x: 5, y: 5}, b: {x: 20, y: 20}}
+    ];
+    let portalCooldown = 0;
+
     let showScreen = function(screen_opt){
         SCREEN = screen_opt;
         switch(screen_opt){
@@ -220,20 +226,21 @@ permalink: /snake
             if(snake[0].x === obstacles[i].x && snake[0].y === obstacles[i].y){ loseLife(); return; }
         }
 
+        // PORTALS: check teleport
+        checkPortals();
+
         // Snake eats apples
         for(let i = 0; i < apples.length; i++){
-    if(snake[0].x === apples[i].x && snake[0].y === apples[i].y){
-        snake.push({x: snake[0].x, y: snake[0].y});
-        altScore(++score);
-        apples.splice(i,1);
-        break; // remove break if you want multiple eaten at once, but one is enough
-    }
-}
-
-// Only generate new apples if all are eaten
-    if(apples.length === 0){
-        generateApples();
-    }
+            if(snake[0].x === apples[i].x && snake[0].y === apples[i].y){
+                snake.push({x: snake[0].x, y: snake[0].y});
+                altScore(++score);
+                apples.splice(i,1);
+                break;
+            }
+        }
+        if(apples.length === 0){
+            generateApples();
+        }
 
         // Paint
         ctx.beginPath();
@@ -254,7 +261,33 @@ permalink: /snake
             ctx.fillRect(obstacles[i].x * BLOCK, obstacles[i].y * BLOCK, BLOCK, BLOCK);
         }
 
+        // Draw Portals
+        ctx.strokeStyle = "#AA00EE";
+        for(let pair of portalPairs){
+            ctx.beginPath();
+            ctx.arc((pair.a.x+0.5)*BLOCK, (pair.a.y+0.5)*BLOCK, BLOCK/2, 0, Math.PI*2);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc((pair.b.x+0.5)*BLOCK, (pair.b.y+0.5)*BLOCK, BLOCK/2, 0, Math.PI*2);
+            ctx.stroke();
+        }
+
         setTimeout(mainLoop, snake_speed);
+    }
+
+    function checkPortals(){
+        if(portalCooldown>0){ portalCooldown--; return; }
+        for(let pair of portalPairs){
+            if(snake[0].x===pair.a.x && snake[0].y===pair.a.y){ teleportSnakeTo(pair.b); return; }
+            if(snake[0].x===pair.b.x && snake[0].y===pair.b.y){ teleportSnakeTo(pair.a); return; }
+        }
+    }
+
+    function teleportSnakeTo(target){
+        snake[0].x = target.x;
+        snake[0].y = target.y;
+        portalCooldown = 2;
     }
 
     let newGame = function(){
@@ -279,16 +312,15 @@ permalink: /snake
 
     let activeDot = function(x,y){ ctx.fillStyle="#00BFFF"; ctx.fillRect(x*BLOCK,y*BLOCK,BLOCK,BLOCK); }
 
-    // Multiple apples are generated
     let generateApples = function(){
-    apples = [];
-    for(let i=0;i<appleCount;i++){
-        let ax, ay;
-        do {
-            ax = Math.floor(Math.random() * (canvas.width/BLOCK));
-            ay = Math.floor(Math.random() * (canvas.height/BLOCK));
-        } while(snake.some(s=>s.x===ax && s.y===ay) || apples.some(a=>a.x===ax && a.y===ay));
-        apples.push({x:ax,y:ay});
+        apples = [];
+        for(let i=0;i<appleCount;i++){
+            let ax, ay;
+            do {
+                ax = Math.floor(Math.random() * (canvas.width/BLOCK));
+                ay = Math.floor(Math.random() * (canvas.height/BLOCK));
+            } while(snake.some(s=>s.x===ax && s.y===ay) || apples.some(a=>a.x===ax && a.y===ay));
+            apples.push({x:ax,y:ay});
         }
     }
 
