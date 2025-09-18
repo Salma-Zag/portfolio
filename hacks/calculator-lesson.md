@@ -41,7 +41,7 @@ For this lesson, here are the changes we will be demoing:
 
 <br>
 
-### **Rainbow Background
+### **Rainbow Background**
 
 To elevate the calculator and make it look unique, we decided we wanted to animate a rainbow background that looped seamlessly.
 
@@ -61,6 +61,7 @@ To elevate the calculator and make it look unique, we decided we wanted to anima
    box-shadow: 0 0 20px rgba(0,0,0,0.5);
  }
  ```
+
 This code would set the background to a linear gradient containing the colors of the rainbow, and the line labeled "animation:" would set a variable called rainbow-move that would move the rainbow infinitely.
 
 Later, we defined the rainbow-move variable using keyframes:
@@ -97,6 +98,7 @@ document.addEventListener("keydown", function(event) {
   }
 });
 ```
+
 This code made it so that when keys 0-9 were pressed, it would input these numbers. Also, the keyboard support code also allows operations to be typed instead of having to press the button manually.
 
 ---
@@ -188,7 +190,8 @@ if (output.innerHTML.indexOf(".") == -1) {
            nextReady = false;
        }
 ```
-<br>Make sure it’s still there, this prevents a second decimal point.
+
+Make sure it’s still there, this prevents a second decimal point.
 
 <br>
 
@@ -214,9 +217,9 @@ case "/":
 
 **6) Clear Button Doesn’t Reset (A/C)**
 
-<br>Problem: Pressing A/C doesnt clear everything
+Problem: Pressing A/C doesnt clear everything
 
-<br>How to fix it:
+How to fix it:
 - Make sure this code is at the bottom:
 
 ```js
