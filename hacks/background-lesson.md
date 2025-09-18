@@ -59,12 +59,12 @@ background: images/platformer/backgrounds/alien_planet1.jpg
 permalink: /background
 ---
 ```
-Change the file path after **sprite** to change the UFO to a different image location.
+To change the UFO to a different image location, we changed the file path after **sprite**.
 
 Change the file path after **background** to change the background to a different image.
 *(In our background game, we changed the background image to alien_planet2)*
 
-Make sure your images exist in their specified locations.
+When troubleshooting, we had to make sure the images existed in their specified locations.
 
 <br>
 
