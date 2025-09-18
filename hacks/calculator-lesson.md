@@ -111,6 +111,7 @@ There are many problems you may run into when attempting to edit or run your cal
 
 <br>How to fix it:
 - Make sure this has been copied to your HTML:
+
 ```js
 <style>
  /* calculator container with rainbow gradient */
@@ -187,7 +188,7 @@ if (output.innerHTML.indexOf(".") == -1) {
            nextReady = false;
        }
 ```
-Make sure it’s still there, this prevents a second decimal point.
+<br>Make sure it’s still there, this prevents a second decimal point.
 
 <br>
 
