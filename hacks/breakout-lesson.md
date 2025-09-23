@@ -5,27 +5,25 @@ permalink: /breakout-lesson
 ---
 
 # OOP Breakout Lesson
-# Starting off
-Our team wanted to take on a challenge along with our other hacks. A few of our members hold Google block breaker close to our hearts, so seeing that it was a tougher hack and something we would genuinely enjoy changing, it was a no-brainer to take it on.
 
-Right off the bat, we realized the game itself moved too slowly for our liking. Changing the speed of both the ball and the paddle was prioritized.
+Our team decided to take on Google Block Breaker as a challenge because several of us enjoy the game and wanted to experiment with improving it. Through this project, we explored game mechanics, collision detection, and UI customization.
 
-# Changing Game Speed
+---
 
-To change this, all that had to be done was change two numbers in the block of code that defines the ball's properties. The terms ‘this.dx’ and ‘this.dy’ are the speeds of the ball on the respective axes (x and y).
-In other words, the speed of the ball while it moves up and down. Try changing the numbers to your liking. Experiment with it.
-```js
-// Ball class
-  class Ball extends GameObject {
-    constructor(x, y, radius = 8) {
-      super(x, y);
-      this.radius = radius;
-      this.dx = 4;
-      this.dy = -4;
-      this.color = "#ad6bebff";
-    }
+## 1: Speeding Up the Ball
+
+Right off the bat, we realized the game itself moved too slowly for our liking. Changing the speed of both the ball and the paddle was prioritized. The ball’s speed is controlled by **two variables**:
+
+```javascript
+this.dx = 4; // Horizontal speed
+this.dy = -4; // Vertical speed
 ```
+To change this, all that had to be done was change two numbers in the block of code that defines the ball's properties. The terms ‘this.dx’ and ‘this.dy’ are the speeds of the ball on the respective axes (x and y).
+In other words, the terms define the speed of the ball while it moves up and down.
+
+<br>
 For the paddle, something similar was done. This one is very simple, as the speed variable is literally called ‘this.speed’.
+
 ```js
 // Paddle class
   class Paddle extends GameObject {
@@ -42,56 +40,29 @@ For the paddle, something similar was done. This one is very simple, as the spee
       this.rightPressed = false;
     }
 ```
+
+A higher this.speed allows the player to react to a faster ball, so editing the value allowed us to make the game more challenging. A lower paddle speed would make the game much harder, but we decided to balance the ball/paddle speed so as not to make the game too difficult.
+
 # Fixing the Ball Clipping Issue
 
 After turning up the speed, it quickly became apparent that the base game didn’t support the ball moving this fast, as the ball would clip through the bricks, breaking multiple at once rather than bouncing off, and additionally clipping through the paddle and touching the backwall, unfairly costing the player a life.
 
 It’s likely you’re having this issue too, especially if you tried to make the game really fast. To fix this, the game's original collision detection had to be adapted.
+Fast-moving balls can skip over bricks or the paddle. To prevent this, we predict the ball’s next position:
 
 ```js
-collisionDetection() {
-      for (let brick of this.bricks) {
-        if (!brick.isActive()) continue;
+const nextX = this.ball.x + this.ball.dx;
+const nextY = this.ball.y + this.ball.dy;
+```
 
+We then check overlap with bricks:
 
-        const nextX = this.ball.x + this.ball.dx;
-        const nextY = this.ball.y + this.ball.dy;
-
-
-        const ballLeft = nextX - this.ball.radius;
-        const ballRight = nextX + this.ball.radius;
-        const ballTop = nextY - this.ball.radius;
-        const ballBottom = nextY + this.ball.radius;
-
-
-        const brickLeft = brick.x;
-        const brickRight = brick.x + brick.width;
-        const brickTop = brick.y;
-        const brickBottom = brick.y + brick.height;
-
-
-        const isColliding =
-          ballRight > brickLeft &&
-          ballLeft < brickRight &&
-          ballBottom > brickTop &&
-          ballTop < brickBottom;
-
-
-        if (isColliding) {
-          // Determine overlap to decide whether to invert dx or dy
-          const overlapX = Math.min(ballRight - brickLeft, brickRight - ballLeft);
-          const overlapY = Math.min(ballBottom - brickTop, brickBottom - ballTop);
-
-
-          if (overlapX < overlapY) {
-            // side collision
-            this.ball.dx = -this.ball.dx;
-          } else {
-            // top/bottom collision
-            this.ball.dy = -this.ball.dy;
-          }
-
-
+```js
+const isColliding =
+  ballRight > brickLeft &&
+  ballLeft < brickRight &&
+  ballBottom > brickTop &&
+  ballTop < brickBottom;
 ```
 
 # Changing the Game's Colors
