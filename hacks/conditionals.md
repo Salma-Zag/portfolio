@@ -111,6 +111,8 @@ Then, create an if, else conditional that echoes a certain string of code in the
 - challenge 1: expand to add other categories using "else if" conditionals
 - challenge 2: create a random age generator and test the conditional multiple times to see different results
 
+When you have completed your code, take a picture of the code and upload the screenshot to our Google Form (you will be submitting this).
+
 Here's the basic code to get you started (from example 1):
 ```js
 let mood = "happy";
