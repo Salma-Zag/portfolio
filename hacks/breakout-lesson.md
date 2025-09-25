@@ -65,6 +65,16 @@ const isColliding =
   ballTop < brickBottom;
 ```
 
+We also can tweak the way the bounce direction is determined.
+
+```js
+if (overlapX < overlapY) {
+  this.ball.dx = -this.ball.dx; // side collision
+} else {
+  this.ball.dy = -this.ball.dy; // top/bottom collision
+}
+```
+
 # Changing the Game's Colors
 
 Obviously, this wouldn’t be a proper hack without changing the game's aesthetics! 
@@ -72,15 +82,17 @@ Obviously, this wouldn’t be a proper hack without changing the game's aestheti
 The this.color function is always the easiest and most reliable way to to change any variable’s color on your website.
 
 Ex: The ball. Try looking for these in the code and changing them to your liking!
+
 ```js
-    this.color = "#ad6bebff";
-    }
+this.color = "#ad6bebff"; // Ball color
+this.color = "#bf48eeff"; // Paddle color
 ```
 
-Score Display
+# Score Display
+
 While we’re still on the topic of aesthetics, don’t you want to make your score, lives, and level UI more interesting? It’s a more tedious process, but the end result is worth it.
 
-Start with setting up the UI in the style block at the beginning of your code, and deleting the previous one.
+We started by setting up the UI in the style block at the beginning of your code, and deleting the previous one.
 
 ```js
  #gameInfoUI {
@@ -104,6 +116,7 @@ Start with setting up the UI in the style block at the beginning of your code, a
   }
   </style>
 ```
+
 The font and colors may be changed freely.
 
 If you’re having issues with the score and lives not updating, you may need to add this block of code about the ‘gameloop()’ block.
