@@ -102,6 +102,9 @@ background: images/platformer/backgrounds/galaxy2.jpg
   <a href="{{site.baseurl}}/hacks" class="button large">
     Space Onboarding Challenge
   </a>
+<a href="{{site.baseurl}}/fundamentals" class="button large">
+    OOP Breakout Fundamentals
+  </a>
 </div>
 
 <style>

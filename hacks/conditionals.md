@@ -1,19 +1,23 @@
 ---
 layout: base
-title: OOP Breakout Lesson
-permalink: /breakout-lesson
+title: OOP Breakout Fundamentals - Conditionals
+permalink: /conditionals
 ---
 
-# CONDITIONALS
+---
+## **CONDITIONALS**
+---
 
-## What are conditionals?
+### **What Are Conditionals?**
 - allows the execution of different blocks of code based on whether a specified condition evaluates to true or false
 - this enables programs to make decisions and respond dynamically to various situations
 - types: if, if-else, else if, (+switch)
 
-## Types of Conditionals
+<br>
 
-### 1. if
+### **Types of Conditionals**
+
+#### 1. if
 executes code if a given condition is true
 
 ```js
@@ -22,7 +26,7 @@ if (condition) {
 }
 ```
 
-### 2. if ... else
+#### 2. if ... else
 
 basically a true/false --> executes one thing if the condition is true, and a different thing if the condition is false
 
@@ -39,7 +43,7 @@ if (condition) {
 }
 ```
 
-### 3. else ... if
+#### 3. else ... if
 
 - java's equivalent of elif
 - Executes a block of code if the preceding if condition (or any preceding else if conditions) evaluates to false, AND its own specified condition evaluates to true.
@@ -56,7 +60,7 @@ if (condition1) {
     }
 ```
 
-### 4. switch
+#### 4. switch
 
 compares multiple possible outcomes
 more complex than just true/false
@@ -74,7 +78,9 @@ switch (expression) {
     }
 ```
 
-## Summary
+<br>
+
+### **Summary**
 
 “if” checks a condition
 “else if" checks another condition if the previous ones were false
@@ -82,7 +88,7 @@ switch (expression) {
 
 ---
 
-## POPCORN HACK 1
+### **POPCORN HACK 1**
 
 Open a new block of code (in a Jupyter notebook in your student repo is fine). 
 
@@ -91,7 +97,8 @@ We're going to try creating a simple conditional and then expanding on it using 
 First, define any variable using a let statement.
 Then, create an if, else conditional that echoes a certain string of code in the console. 
 
-Examples of conditionals you could use:
+**Examples of conditionals you could use:**
+
 1) Define your mood today and give yourself ice cream if you're happy
 - challenge 1: add "else if" conditionals that echo different strings based on different moods
 - challenge 2: add user input to define a "mood" variable
@@ -140,7 +147,7 @@ if (age < 13) {
 
 ---
 
-# EXAMPLES OF CONDITIONALS IN OOP BREAKOUT
+## **EXAMPLES OF CONDITIONALS IN OOP BREAKOUT**
 
 To Recap: A **conditional** in code is any statement where the program checks a condition (using `if, else, or else if ` statements) to decide what to do next. Throughout the OOP BREAKOUT game, there are many examples of conditionals and conditional expressions that help the game run smoothly. 
 
