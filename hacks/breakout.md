@@ -88,6 +88,7 @@ permalink: /breakout
       this.dx = 4;
       this.dy = -4;
       this.color = "#ad6bebff";
+      this.colors = ["#ad6bebff", "#f3a6f3", "#6be8ff", "#ff6b6b", "#ffd36b"];
     }
 
     draw(ctx) {
@@ -99,15 +100,22 @@ permalink: /breakout
     }
 
     update(canvasWidth, canvasHeight) {
+      // Predict next position
+      const nextX = this.x + this.dx;
+      const nextY = this.y + this.dy;
+
       // Wall collision (left/right)
-      if (this.x + this.dx > canvasWidth - this.radius || this.x + this.dx < this.radius) {
+      if (nextX > canvasWidth - this.radius || nextX < this.radius) {
         this.dx = -this.dx;
+        this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
       }
       // Top
-      if (this.y + this.dy < this.radius) {
+      if (nextY < this.radius) {
         this.dy = -this.dy;
+        this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
       }
 
+      // Apply movement
       this.x += this.dx;
       this.y += this.dy;
     }
@@ -115,7 +123,6 @@ permalink: /breakout
     reset(canvasWidth, canvasHeight) {
       this.x = canvasWidth / 2;
       this.y = canvasHeight - 60;
-      // keep same speed magnitude but randomize direction a bit
       const speed = Math.max(4, Math.hypot(this.dx, this.dy));
       const angle = (Math.PI / 6) + Math.random() * (Math.PI / 3);
       const sign = Math.random() < 0.5 ? -1 : 1;
@@ -131,6 +138,7 @@ permalink: /breakout
     }
 
     collidesWith(obj) {
+      // Simple bounding check (point-in-rect style) - ok for most brick collisions here
       return (
         this.x > obj.x &&
         this.x < obj.x + obj.width &&
@@ -153,10 +161,10 @@ permalink: /breakout
       const paddleRight = paddle.x + paddle.width;
 
       return (
-          ballBottom >= paddleTop &&
-          ballTop <= paddleTop + paddle.height &&
-          ballRight >= paddleLeft &&
-          ballLeft <= paddleRight
+        ballBottom >= paddleTop &&
+        ballTop <= paddleTop + paddle.height &&
+        ballRight >= paddleLeft &&
+        ballLeft <= paddleRight
       );
     }
   }
@@ -197,11 +205,10 @@ permalink: /breakout
 
     setPosition(x) {
       // center paddle on x
-      if (x >= 0 && x <= this.canvasWidth) {
-        this.x = x - this.width / 2;
-        if (this.x < 0) this.x = 0;
-        if (this.x > this.canvasWidth - this.width) this.x = this.canvasWidth - this.width;
-      }
+      if (typeof x !== "number") return;
+      this.x = x - this.width / 2;
+      if (this.x < 0) this.x = 0;
+      if (this.x > this.canvasWidth - this.width) this.x = this.canvasWidth - this.width;
     }
 
     reset() {
@@ -212,7 +219,6 @@ permalink: /breakout
     applyPowerUp(type) {
       if (type === "wide") {
         this.width = this.baseWidth + 40;
-        // keep it in bounds
         if (this.x > this.canvasWidth - this.width) this.x = this.canvasWidth - this.width;
       }
     }
@@ -250,7 +256,6 @@ permalink: /breakout
 
         ctx.fill();
         ctx.closePath();
-        // reset shadow
         ctx.shadowBlur = 0;
       }
     }
@@ -286,7 +291,6 @@ permalink: /breakout
         ctx.fill();
         ctx.closePath();
 
-        // Draw "P" text
         ctx.fillStyle = "black";
         ctx.font = "bold 14px Arial";
         ctx.textAlign = "center";
@@ -298,7 +302,7 @@ permalink: /breakout
     update(canvasHeight) {
       if (this.active) {
         this.y += this.fallSpeed;
-        if (this.y - this.size/2 > canvasHeight) this.active = false;
+        if (this.y - this.size / 2 > canvasHeight) this.active = false;
       }
     }
 
@@ -340,7 +344,7 @@ permalink: /breakout
       // Power-up state
       this.activePowerUp = null;
       this.powerUpTimer = 0;
-      this.powerUpDuration = 5000; // 5 seconds
+      this.powerUpDuration = 5000; // milliseconds
 
       // Brick configuration
       this.brickRows = 4;
@@ -374,7 +378,7 @@ permalink: /breakout
         }
       });
 
-      // Mouse controls (use bounding rect for correct offsets)
+      // Mouse controls
       this.canvas.addEventListener("mousemove", (e) => {
         const rect = this.canvas.getBoundingClientRect();
         const relativeX = e.clientX - rect.left;
@@ -505,6 +509,9 @@ permalink: /breakout
             this.ball.dy = -this.ball.dy;
           }
 
+          // color change on brick hit
+          this.ball.color = this.ball.colors[Math.floor(Math.random() * this.ball.colors.length)];
+
           brick.destroy();
           this.score++;
           this.updateInfoUI();
@@ -556,8 +563,10 @@ permalink: /breakout
     }
 
     checkBallCollision() {
-      // Ball hits bottom
-      if (this.ball.y + this.ball.dy > this.height - this.ball.radius) {
+      // Called after ball.update() so ball has already moved.
+      // Check bottom (miss or paddle)
+      if (this.ball.y + this.ball.radius > this.height) {
+        // If paddle collision detected (use collidesWithPaddle with future movement)
         if (this.ball.collidesWithPaddle(this.paddle)) {
           // reflect and tweak dx based on where it hit the paddle for more control
           const hitPos = (this.ball.x - (this.paddle.x + this.paddle.width / 2)) / (this.paddle.width / 2);
@@ -566,14 +575,19 @@ permalink: /breakout
           const speed = Math.hypot(this.ball.dx, this.ball.dy);
           this.ball.dx = speed * Math.sin(angle);
           this.ball.dy = -Math.abs(speed * Math.cos(angle));
+          // small nudge and color change to indicate paddle bounce
+          this.ball.color = this.ball.colors[Math.floor(Math.random() * this.ball.colors.length)];
         } else {
+          // missed paddle
           this.lives--;
           this.updateInfoUI();
           if (this.lives === 0) {
             this.gameOver();
+            return;
           } else {
             this.ball.reset(this.width, this.height);
             this.paddle.reset();
+            return;
           }
         }
       }
@@ -582,7 +596,7 @@ permalink: /breakout
     gameOver() {
       this.gameRunning = false;
       this.paused = true;
-      setTimeout(() => { // small timeout so alert doesn't interrupt redraw
+      setTimeout(() => {
         alert(`GAME OVER! Final Score: ${this.score}`);
         this.reset();
       }, 10);
@@ -592,10 +606,17 @@ permalink: /breakout
     update() {
       if (this.paused || !this.gameRunning) return;
 
+      // Move ball (it handles left/right/top bounces)
       this.ball.update(this.width, this.height);
+
+      // Update other objects
       this.paddle.update();
       this.updatePowerUps();
+
+      // Check collisions with bricks
       this.collisionDetection();
+
+      // Check bottom/paddle/miss
       this.checkBallCollision();
 
       if (this.checkWinCondition()) return;
@@ -618,28 +639,27 @@ permalink: /breakout
       }
 
       // Power-up timer bar
-if (this.activePowerUp) {
-  const elapsed = Date.now() - this.powerUpTimer;
-  const remaining = Math.max(0, this.powerUpDuration - elapsed);
-  const barHeight = 100;
-  const barWidth = 10;
-  const fillHeight = (remaining / this.powerUpDuration) * barHeight;
+      if (this.activePowerUp) {
+        const elapsed = Date.now() - this.powerUpTimer;
+        const remaining = Math.max(0, this.powerUpDuration - elapsed);
+        const barHeight = 100;
+        const barWidth = 10;
+        const fillHeight = (remaining / this.powerUpDuration) * barHeight;
 
-  this.ctx.fillStyle = "gray";
-  this.ctx.fillRect(this.width - 20, 30, barWidth, barHeight);
+        this.ctx.fillStyle = "gray";
+        this.ctx.fillRect(this.width - 20, 30, barWidth, barHeight);
 
-  this.ctx.fillStyle = "lime";
-  this.ctx.fillRect(
-    this.width - 20,
-    30 + (barHeight - fillHeight),
-    barWidth,
-    fillHeight
-  );
+        this.ctx.fillStyle = "lime";
+        this.ctx.fillRect(
+          this.width - 20,
+          30 + (barHeight - fillHeight),
+          barWidth,
+          fillHeight
+        );
 
-  this.ctx.strokeStyle = "black";
-  this.ctx.strokeRect(this.width - 20, 30, barWidth, barHeight);
-}
-
+        this.ctx.strokeStyle = "black";
+        this.ctx.strokeRect(this.width - 20, 30, barWidth, barHeight);
+      }
     }
 
     updateInfoUI() {
@@ -664,5 +684,5 @@ if (this.activePowerUp) {
   game.draw();
 </script>
 
-  </div><a class="u-url" href="/breakout" hidden></a>
+  </div><a class="u-url" href="/popcornhack2" hidden></a>
 </article>
