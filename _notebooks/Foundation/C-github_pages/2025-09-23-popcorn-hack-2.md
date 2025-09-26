@@ -1,7 +1,7 @@
 ---
 layout: base
 title: OOP Breakout
-permalink: /popcornhack2
+permalink: /popcornhack
 ---
 
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
