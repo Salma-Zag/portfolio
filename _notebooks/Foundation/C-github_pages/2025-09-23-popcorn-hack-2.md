@@ -472,16 +472,14 @@ permalink: /popcornhack
 
     collisionDetection() {
       // inside if (isColliding) { ... }
-if (overlapX < overlapY) {
-    // side collision
-    this.ball.dx = -this.ball.dx;
-    // change color
-    this.ball.color = this.ball.colors[Math.floor(Math.random() * this.ball.colors.length)];
-} else {
-    // top/bottom collision
-    this.ball.dy = -this.ball.dy;
-    // change color
-    this.ball.color = this.ball.colors[Math.floor(Math.random() * this.ball.colors.length)];
+      if (overlapX < overlapY) {
+  this.ball.dx = -this.ball.dx;
+  this.ball.color = this.ball.colors[Math.floor(Math.random() * this.ball.colors.length)];
+  } else {
+  this.ball.dy = -this.ball.dy;
+  this.ball.color = this.ball.colors[Math.floor(Math.random() * this.ball.colors.length)];
+  } 
+
 }
       for (let brick of this.bricks) {
         if (!brick.isActive()) continue;
@@ -570,14 +568,15 @@ if (overlapX < overlapY) {
 
     checkBallCollision() {
       // inside Ball.update()
-if (this.x + this.dx > canvasWidth - this.radius || this.x + this.dx < this.radius) {
-    this.dx = -this.dx;
-    this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
-}
-if (this.y + this.dy < this.radius) {
-    this.dy = -this.dy;
-    this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
-}
+      if (this.x + this.dx > canvasWidth - this.radius || this.x + this.dx < this.radius) {
+  this.dx = -this.dx;
+  this.color = this.colors[Math.floor(Math.random() * this.colors.length)]; // 🍿 Popcorn Hack
+      }
+      if (this.y + this.dy < this.radius) {
+  this.dy = -this.dy;
+  this.color = this.colors[Math.floor(Math.random() * this.colors.length)]; // 🍿 Popcorn Hack
+      }
+
       // Ball hits bottom
       if (this.ball.y + this.ball.dy > this.height - this.ball.radius) {
         if (this.ball.collidesWithPaddle(this.paddle)) {
