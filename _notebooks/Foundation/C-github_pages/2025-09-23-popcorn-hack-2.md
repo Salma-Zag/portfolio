@@ -686,5 +686,5 @@ if (this.activePowerUp) {
   game.draw();
 </script>
 
-  </div><a class="u-url" href="/popcornhack2" hidden></a>
+  </div><a class="u-url" href="/popcornhack" hidden></a>
 </article>
