@@ -80,7 +80,7 @@ permalink: /popcornhack2
     update() {}
   }
 
-  // Ball class
+  // Ball class, added color array for ball change
   this.colors = ["#ad6bebff", "#f3a6f3", "#6be8ff", "#ff6b6b", "#ffd36b"];
   class Ball extends GameObject {
     constructor(x, y, radius = 8) {
