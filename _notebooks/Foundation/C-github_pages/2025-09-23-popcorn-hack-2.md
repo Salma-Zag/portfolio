@@ -81,7 +81,6 @@ permalink: /popcornhack2
   }
 
   // Ball class, added color array for ball change
-  this.colors = ["#ad6bebff", "#f3a6f3", "#6be8ff", "#ff6b6b", "#ffd36b"];
   class Ball extends GameObject {
     constructor(x, y, radius = 8) {
       super(x, y);
@@ -89,6 +88,7 @@ permalink: /popcornhack2
       this.dx = 4;
       this.dy = -4;
       this.color = "#ad6bebff";
+      this.colors = ["#ad6bebff", "#f3a6f3", "#6be8ff", "#ff6b6b", "#ffd36b"];
     }
 
     draw(ctx) {
@@ -686,5 +686,5 @@ if (this.activePowerUp) {
   game.draw();
 </script>
 
-  </div><a class="u-url" href="/breakout" hidden></a>
+  </div><a class="u-url" href="/popcornhack2" hidden></a>
 </article>
