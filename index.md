@@ -5,7 +5,7 @@ hide: true
 show_reading_time: false
 ---
 
-Hi! My name is [Your Full Name]
+Hi! My name is Salma!
 
 ### Development Environment
 
@@ -33,53 +33,42 @@ Hi! My name is [Your Full Name]
 
 <br>
 
-### My Lessons
+### Sprint Four
 
-> Foundations in Tech are essential, click to see some of my lesson creations.
+> The first sprint, our team adventure game!
 
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-    <a href="{{site.baseurl}}/code/javascript" style="text-decoration: none;">
+    <a href="{{site.baseurl}}/sprintfour" style="text-decoration: none;">
         <div style="background-color: var(--green); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
-           JS Basics
-        </div>
-    </a>
-    <a href="{{site.baseurl}}/game/essentials/variables" style="text-decoration: none;">
-        <div style="background-color: var(--blue); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
-           JS Variables
-        </div>
-    </a>
-    <a href="{{site.baseurl}}/gamerunner" style="text-decoration: none;">
-        <div style="background-color: var(--warn); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
-           Gamerunner
-        </div>
-    </a>
-    <a href="{{site.baseurl}}/network/stack" style="text-decoration: none;">
-        <div style="background-color: var(--orange); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
-           Networking
+           Sprint Four
         </div>
     </a>
 </div>
 
 <br>
 
-### Class Progress
+### Sprint Five
 
-> Here is my game progress through coding, click to see these in the browser
+> The second sprint, and our beloved multiplayer game!
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-    <a href="{{site.baseurl}}/snake" class="btn">
-        Snake
+    <a href="{{site.baseurl}}/sprintfive" class="btn">
+        Sprint Five
     </a>
-    <a href="{{site.baseurl}}/gamify/parallax" class="btn" style="background-color: var(--green); ">
-        Fish
-    </a>
-    <a href="{{site.baseurl}}/gamify" class="btn" style="background-color: var(--teal);">
-       Gamify
-    </a>
-    <a href="{{site.baseurl}}/cs-pathway" class="btn" style="background-color: var(--orange);">
-       CS Pathway
-    </a>
-</div>
+<br>
 
+### Progress Checklists
+
+> My progress checklist from the beginning, and end of the trimester! It's always fun to reflect and compare progress.
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <a href="{{site.baseurl}}/first-checklist" class="btn">
+        Checklist 1
+    </a>
+<br>
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <a href="{{site.baseurl}}/last-checklist" class="btn">
+        Checklist 2
+    </a>
 <br>
