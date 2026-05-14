@@ -57,7 +57,7 @@ class GameLevelTimmyfuncounter {
                     this.listenerAdded = true; 
                     document.addEventListener("keydown", (e) => {
                         if (e.key.toLowerCase() === "e") {
-                            window.location.href = "timmyhooray.html";
+                            window.location.href = "gamify/timmyhooray.html";
                         }
                     });
                 }
