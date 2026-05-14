@@ -340,7 +340,7 @@ class GameLevelMultiplayer {
 
         const bgData = {
             name: "custom_bg",
-            src: path + "/images/gamebuilder/bg/Arena.png",
+            src: path + "/_projects/games/tag-game-multiplayer/images/Arena.png",
             pixels: { height: 720, width: 1280 }
         };
 
@@ -402,7 +402,7 @@ class GameLevelMultiplayer {
             },
             {
                 label: "Astro",
-                src: path + "/images/projects/characters/astro.png",
+                src: path + "/images/gamebuilder/sprites/astro.png",
                 pixels: { height: 770, width: 513 },
                 SCALE_FACTOR: 11,
                 ANIMATION_RATE: 110,
@@ -418,7 +418,7 @@ class GameLevelMultiplayer {
             },
             {
                 label: "Kirby",
-                src: path + "/images/projects/characters/kirby.png",
+                src: path + "/images/gamebuilder/sprites/kirby.png",
                 pixels: { height: 36, width: 569 },
                 SCALE_FACTOR: 7,
                 ANIMATION_RATE: 8,
@@ -604,7 +604,7 @@ class GameLevelMultiplayer {
 
         const arenaBarrierData = {
             id: 'arena-wall',
-            visible: true,
+            visible: false,
             color: 'rgb(248, 39, 39)',
             lineWidth: 4,
             splinePoints: [
