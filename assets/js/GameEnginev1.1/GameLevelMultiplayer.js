@@ -1,7 +1,7 @@
-import GameEnvBackground from '@assets/js/GameEnginev1.1/essentials/GameEnvBackground.js';
-import Player from '@assets/js/GameEnginev1.1/essentials/Player.js';
-import GameObject from '@assets/js/GameEnginev1.1/essentials/GameObject.js';
-import SplineBarrier from '@assets/js/projects/tag-game-multiplayer/levels/SplineBarrier.js';
+import GameEnvBackground from './essentials/GameEnvBackground.js';
+import Player from './essentials/Player.js';
+import GameObject from './assets/js/GameEnginev1.1/essentials/GameObject.js';
+import SplineBarrier from './assets/js/GameEnginev1.1/SplineBarrier.js';
 
 class RemotePlayerVisualizer extends GameObject {
     constructor(data = null, gameEnv = null) {
@@ -288,7 +288,7 @@ class GameLevelMultiplayer {
         const width = gameEnv.innerWidth;
         const height = gameEnv.innerHeight;
         
-         const socket = io("wss://flask-ws.opencodingsociety.com", { transports: ["websocket"] });
+          const socket = io("wss://flask-ws.opencodingsociety.com", { transports: ["websocket"] });
         // const socket = io("ws://localhost:8590", { transports: ["websocket"] });
 
         const myIdRef = { value: null };
